@@ -1,0 +1,210 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+
+<link rel="import" href="contentful-entries.html">
+<link rel="import" href="my-icons.html">
+<link rel="import" href="asm-page.html">
+<link rel="import" href="asm-frontpage.html">
+
+<dom-module id="asm-app">
+	<template>
+		<style>
+			:host {
+				--app-primary-color: #4285f4;
+				--app-secondary-color: black;
+
+				display: block;
+			}
+
+			app-drawer-layout:not([narrow]) [drawer-toggle] {
+				display: none;
+			}
+
+			app-header {
+				color: #fff;
+				background-color: var(--app-primary-color);
+			}
+
+			app-header paper-icon-button {
+				--paper-icon-button-ink-color: white;
+			}
+
+			.drawer-list {
+				margin: 0 20px;
+			}
+
+			.drawer-list a {
+				display: block;
+				padding: 0 16px;
+				text-decoration: none;
+				color: var(--app-secondary-color);
+				line-height: 40px;
+			}
+
+			.drawer-list a.iron-selected {
+				color: black;
+				font-weight: bold;
+			}
+		</style>
+
+		<app-location route="{{route}}"></app-location>
+
+		<contentful-entries
+			config="[[eventIndexConfig]]"
+			query-params="[[eventOptions]]"
+			entries="{{events}}">
+		</contentful-entries>
+
+		<contentful-entries
+			config="[[eventSiteConfig]]"
+			query-params="[[navigationOptions]]"
+			entries="{{navigationPages}}">
+		</contentful-entries>
+
+		<app-route
+				route="{{route}}"
+				pattern="[[rootPattern]]:event"
+				data="{{routeData}}"
+				tail="{{subroute}}"></app-route>
+
+		<app-drawer-layout fullbleed force-narrow>
+			<!-- Drawer content -->
+			<app-drawer id="drawer" slot="drawer">
+				<app-toolbar>Menu</app-toolbar>
+				<div class="drawer-list" role="navigation">
+					<a href="/{{routeData.event}}">Home</a>
+					<template is="dom-repeat" items="{{navigationPages}}">
+						<a href="/{{routeData.event}}/{{item.fields.slug}}">{{item.fields.title}}</a>
+					</template>
+				</div>
+			</app-drawer>
+
+			<!-- Main content -->
+			<app-header-layout has-scrolling-region>
+
+				<app-header slot="header" condenses reveals effects="waterfall">
+					<app-toolbar>
+						<paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
+						<div main-title><!--{{event.eventTitle}}--></div>
+
+					</app-toolbar>
+				</app-header>
+
+				<iron-pages
+						selected="[[viewType]]"
+						attr-for-selected="type"
+						fallback-selection="frontpage"
+						role="main">
+					<asm-frontpage type="frontpage"></asm-frontpage>
+					<asm-page type="page" route="{{subroute}}" config="[[eventSiteConfig]]"></asm-page>
+				</iron-pages>
+			</app-header-layout>
+		</app-drawer-layout>
+	</template>
+
+	<script>
+		class AsmApp extends Polymer.Element {
+
+			static get is() { return 'asm-app'; }
+
+			static get properties() {
+				return {
+					rootPattern: String,
+					routeData: Object,
+					subroute: String,
+					viewType: String,
+
+					eventIndexConfig: {
+						type: Object,
+						value: {
+							space: '6dvj6yy3mmzf',
+							accessToken: 'b29a9bad1019c861adbb32bc869a9ca21b8e804d10548db160a85fdca0dede6c'
+						}
+					},
+					eventOptions: Object,
+					events: {
+						type: Array,
+						observer: '_eventsChanged'
+					},
+					event: Object,
+
+					eventSiteConfig: Object,
+					navigationOptions: {
+						type: Object,
+						value: {
+							'select': ['fields.title', 'fields.slug'],
+							'content_type': '2wKn6yEnZewu2SCCkus4as',
+							'fields.showInMainNavigation': true
+						}
+					},
+					navigationPages: Array
+				};
+			}
+
+			static get observers() {
+				return [
+					'_routeEventChanged(routeData.event)',
+					'_routeCategoryChanged(subroute.path)'
+				];
+			}
+
+			constructor() {
+				super();
+				// Get root pattern for app-route, for more info about `rootPath` see:
+				// https://www.polymer-project.org/2.0/docs/upgrade#urls-in-templates
+				this.rootPattern = (new URL(this.rootPath)).pathname;
+			}
+
+			_eventsChanged(events) {
+				this.event = events && events[0] && events[0].fields;
+
+				if (!this.event) return;
+
+				this.set('routeData.event', this.event.name);
+
+				this.eventSiteConfig = {
+					space: this.event.spaceId,
+					accessToken: this.event.accessToken
+				};
+			}
+
+			_routeEventChanged(eventName) {
+				// Polymer 2.0 will call with `undefined` on initialization.
+				// Ignore until we are properly called with a string.
+				if (eventName === undefined) return;
+
+				const options = {
+					content_type: 'event',
+					limit: 1
+				};
+
+				// Already fetched the event.
+				if (this.event && this.event.name === eventName) return;
+
+				if (event) {
+					options['fields.name'] = eventName;
+				} else { // Get default event.
+					options['fields.isDefault'] = true;
+				}
+
+				this.eventOptions = options;
+			}
+
+			_routeCategoryChanged(categoryPath) {
+				this.viewType = categoryPath.split('/').pop() ? 'page' : 'frontpage';
+			}
+		}
+
+		window.customElements.define(AsmApp.is, AsmApp);
+	</script>
+</dom-module>

@@ -4,7 +4,9 @@
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/marked-element/marked-element.html">
 
-<dom-module id="my-view1">
+<link rel="import" href="contentful-entries.html">
+
+<dom-module id="asm-page">
   <template>
     <style include="shared-styles">
       :host {
@@ -14,6 +16,12 @@
     </style>
 
     <app-location route="{{globalRoute}}"></app-location>
+
+		<contentful-entries
+			config="[[config]]"
+			query-params="[[pageOptions]]"
+			entries="{{pages}}">
+		</contentful-entries>
 
     <template is="dom-repeat" items="{{page.subPages}}">
       <a href="{{globalRoute.path}}/{{item.fields.slug}}">{{item.fields.title}}</a>
@@ -29,39 +37,37 @@
   </template>
 
   <script>
-    class MyView1 extends Polymer.Element {
-      static get is() { return 'my-view1'; }
+    class AsmPage extends Polymer.Element {
+      static get is() { return 'asm-page'; }
       static get properties() {
         return {
           route: Object,
-          client: Object,
+          config: Object,
+          pageOptions: {
+            type: Object,
+            computed: '_computePageOptions(route.path)'
+          },
+          pages: {
+            type: Array,
+            observer: '_pagesChanged'
+          },
           page: Object
         };
       }
 
-      static get observers() {
-        return [
-          '_loadPage(route.path, client)'
-        ];
-      }
-
-      _currentPage(path) {
-        return path.split('/').pop();
-      }
-
-      _loadPage(path, client) {
-        const slug = this._currentPage(path);
-        if (!client) return;
-        client.getEntries({
+      _computePageOptions(path) {
+        const slug = path.split('/').pop();
+        return {
           'content_type': '2wKn6yEnZewu2SCCkus4as',
           'fields.slug': slug
-        }).then(response => {
-          const item = response.items[0];
-          this.page = item.fields;
-        });
+        };
+      }
+
+      _pagesChanged(pages) {
+        this.page = pages && pages[0] && pages[0].fields;
       }
     }
 
-    window.customElements.define(MyView1.is, MyView1);
+    window.customElements.define(AsmPage.is, AsmPage);
   </script>
 </dom-module>

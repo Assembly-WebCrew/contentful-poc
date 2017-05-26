@@ -1,0 +1,52 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<script src="https://unpkg.com/contentful@latest/dist/contentful.min.js"></script>
+
+<dom-module id="contentful-entries">
+	<script>
+		class ContentfulEntries extends Polymer.Element {
+			static get is() { return 'contentful-entries'; }
+
+			static get properties() {
+				return {
+					client: Object,
+					// Inputs
+					config: {
+						type: Object,
+						observer: '_configChanged'
+					},
+					queryParams: Object,
+					// Outputs
+					response: {
+						type: Object,
+						notify: true
+					},
+					entries: {
+						type: Array,
+						notify: true
+					}
+				};
+			}
+
+			static get observers() {
+				return [
+					'_paramsChanged(client, queryParams)'
+				];
+			}
+
+			_paramsChanged(client, queryParams) {
+				if (!client) return;
+
+				client.getEntries(queryParams).then(response => {
+					this.response = response;
+					this.entries = response.items;
+				}, error => console.error(error));
+			}
+
+			_configChanged(config) {
+				this.client = contentful.createClient(config);
+			}
+		}
+
+		window.customElements.define(ContentfulEntries.is, ContentfulEntries);
+	</script>
+</dom-module>

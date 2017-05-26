@@ -1906,6 +1906,10 @@ detect-indent@^4.0.0:
   dependencies:
     repeating "^2.0.0"
 
+detect-node@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/detect-node/-/detect-node-2.0.3.tgz#a2033c09cc8e158d37748fbde7507832bd6ce127"
+
 dicer@0.2.5:
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/dicer/-/dicer-0.2.5.tgz#5996c086bb33218c812c090bddc09cd12facb70f"
@@ -2372,10 +2376,10 @@ express@^4.8.5:
     vary "~1.1.1"
 
 ext-list@^2.0.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/ext-list/-/ext-list-2.2.0.tgz#a3e6fdeab978bca7a320c7e786f537083fc30055"
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/ext-list/-/ext-list-2.2.1.tgz#ba045fac10c92300b4e0606269e4988ddc572b1e"
   dependencies:
-    got "^2.7.2"
+    mime-db "^1.28.0"
 
 ext-name@^3.0.0:
   version "3.0.0"
@@ -2772,21 +2776,6 @@ globby@^6.1.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-got@^2.7.2:
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/got/-/got-2.9.2.tgz#2e1ee58ea1e8d201e25ae580b96e63c15fefd4ee"
-  dependencies:
-    duplexify "^3.2.0"
-    infinity-agent "^2.0.0"
-    is-stream "^1.0.0"
-    lowercase-keys "^1.0.0"
-    nested-error-stacks "^1.0.0"
-    object-assign "^2.0.0"
-    prepend-http "^1.0.0"
-    read-all-stream "^2.0.0"
-    statuses "^1.2.1"
-    timed-out "^2.0.0"
-
 got@^5.0.0:
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/got/-/got-5.7.1.tgz#5f81635a61e4a6589f180569ea4e381680a51f35"
@@ -2968,8 +2957,8 @@ hpack.js@^2.1.6:
     wbuf "^1.1.0"
 
 html-minifier@^3.0.1:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/html-minifier/-/html-minifier-3.5.1.tgz#0fbba015129b4ac9a30b887aec66f39d57cd37a9"
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/html-minifier/-/html-minifier-3.5.2.tgz#d73bc3ff448942408818ce609bf3fb0ea7ef4eb7"
   dependencies:
     camel-case "3.0.x"
     clean-css "4.1.x"
@@ -3065,10 +3054,6 @@ indent-string@^2.1.0:
 indexof@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/indexof/-/indexof-0.0.1.tgz#82dc336d232b9062179d05ab3293a66059fd435d"
-
-infinity-agent@^2.0.0:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/infinity-agent/-/infinity-agent-2.0.3.tgz#45e0e2ff7a9eb030b27d62b74b3744b7a7ac4216"
 
 inflight@^1.0.4:
   version "1.0.6"
@@ -3699,7 +3684,11 @@ micromatch@^2.3.11, micromatch@^2.3.7:
     parse-glob "^3.0.4"
     regex-cache "^0.4.2"
 
-"mime-db@>= 1.27.0 < 2", mime-db@~1.27.0:
+"mime-db@>= 1.27.0 < 2", mime-db@^1.28.0:
+  version "1.28.0"
+  resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.28.0.tgz#fedd349be06d2865b7fc57d837c6de4f17d7ac3c"
+
+mime-db@~1.27.0:
   version "1.27.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.27.0.tgz#820f572296bbd20ec25ed55e5b5de869e5436eb1"
 
@@ -3762,8 +3751,8 @@ mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1:
     minimist "0.0.8"
 
 mocha@^3.1.2:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/mocha/-/mocha-3.4.1.tgz#a3802b4aa381934cacb38de70cf771621da8f9af"
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/mocha/-/mocha-3.4.2.tgz#d0ef4d332126dbf18d0d640c9b382dd48be97594"
   dependencies:
     browser-stdout "1.3.0"
     commander "2.9.0"
@@ -3851,12 +3840,6 @@ ncname@1.0.x:
 negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
-
-nested-error-stacks@^1.0.0:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-1.0.2.tgz#19f619591519f096769a5ba9a86e6eeec823c3cf"
-  dependencies:
-    inherits "~2.0.1"
 
 netrc@^0.1.4:
   version "0.1.4"
@@ -4245,9 +4228,9 @@ polymer-analyzer@^2.0.0, polymer-analyzer@^2.0.1:
     strip-indent "^2.0.0"
     typescript "^2.2.0"
 
-polymer-build@^1.1.0, polymer-build@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/polymer-build/-/polymer-build-1.4.2.tgz#b223202d817d5e36b71eaa57dfa264dd60c18b8d"
+polymer-build@^1.1.0, polymer-build@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/polymer-build/-/polymer-build-1.5.0.tgz#55631d3da8ffd0cefd62a5f6565a71614910ea84"
   dependencies:
     "@types/mz" "0.0.31"
     "@types/node" "^6.0.73"
@@ -4284,8 +4267,8 @@ polymer-bundler@^2.0.0:
     source-map "^0.5.6"
 
 polymer-cli@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/polymer-cli/-/polymer-cli-1.0.2.tgz#7f3aba0308bd35ae1962b7328c97231c2a183b1d"
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/polymer-cli/-/polymer-cli-1.1.0.tgz#bac1c8510b8fc58b85787f4bb184e5e8149c8172"
   dependencies:
     "@types/babel-core" "^6.7.14"
     "@types/chalk" "^0.4.31"
@@ -4327,9 +4310,9 @@ polymer-cli@^1.0.2:
     mz "^2.6.0"
     plylog "^0.4.0"
     polymer-analyzer "^2.0.0"
-    polymer-build "^1.4.2"
+    polymer-build "^1.5.0"
     polymer-linter "^2.0.2"
-    polymer-project-config "^3.2.0"
+    polymer-project-config "^3.2.1"
     polyserve "^0.19.0"
     request "^2.72.0"
     semver "^5.3.0"
@@ -4357,7 +4340,7 @@ polymer-linter@^2.0.2:
     polymer-analyzer "^2.0.0"
     strip-indent "^2.0.0"
 
-polymer-project-config@^3.0.0, polymer-project-config@^3.2.0:
+polymer-project-config@^3.0.0, polymer-project-config@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/polymer-project-config/-/polymer-project-config-3.2.1.tgz#e880e1a4dba436de9ecd85ed421742f6f3e0d1a2"
   dependencies:
@@ -4428,7 +4411,7 @@ prelude-ls@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
 
-prepend-http@^1.0.0, prepend-http@^1.0.1:
+prepend-http@^1.0.1:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
 
@@ -4532,12 +4515,6 @@ rc@^1.0.1, rc@^1.1.6:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
-
-read-all-stream@^2.0.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/read-all-stream/-/read-all-stream-2.2.0.tgz#6b83370546c55ab6ade2bf75e83c66e45989bbf0"
-  dependencies:
-    readable-stream "^2.0.0"
 
 read-all-stream@^3.0.0:
   version "3.1.0"
@@ -5117,10 +5094,11 @@ spdx-license-ids@^1.0.2:
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-1.2.2.tgz#c9df7a3424594ade6bd11900d596696dc06bac57"
 
 spdy-transport@^2.0.18:
-  version "2.0.19"
-  resolved "https://registry.yarnpkg.com/spdy-transport/-/spdy-transport-2.0.19.tgz#f4bb95424296cd52927485ddd88a821682f196eb"
+  version "2.0.20"
+  resolved "https://registry.yarnpkg.com/spdy-transport/-/spdy-transport-2.0.20.tgz#735e72054c486b2354fe89e702256004a39ace4d"
   dependencies:
     debug "^2.6.8"
+    detect-node "^2.0.3"
     hpack.js "^2.1.6"
     obuf "^1.1.1"
     readable-stream "^2.2.9"
@@ -5168,7 +5146,7 @@ stacky@^1.3.1:
     chalk "^1.1.1"
     lodash "^3.0.0"
 
-"statuses@>= 1.3.1 < 2", statuses@^1.2.1, statuses@~1.3.1:
+"statuses@>= 1.3.1 < 2", statuses@~1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.3.1.tgz#faf51b9eb74aaef3b3acf4ad5f61abf24cb7b93e"
 
@@ -5417,10 +5395,6 @@ through2@^2.0.0, through2@^2.0.1, through2@^2.0.3, through2@~2.0.0:
 through@^2.3.6:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
-
-timed-out@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/timed-out/-/timed-out-2.0.0.tgz#f38b0ae81d3747d628001f41dafc652ace671c0a"
 
 timed-out@^3.0.0:
   version "3.1.3"
