@@ -1,0 +1,670 @@
+{
+    "contentTypes": [
+        {
+            "sys": {
+                "space": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "Space",
+                        "id": "6dvj6yy3mmzf"
+                    }
+                },
+                "id": "event",
+                "type": "ContentType",
+                "createdAt": "2017-05-23T19:55:07.496Z",
+                "updatedAt": "2017-05-25T16:46:28.964Z",
+                "createdBy": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "User",
+                        "id": "1NrW7q4jBKJ5Tw1zaB9Gm8"
+                    }
+                },
+                "updatedBy": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "User",
+                        "id": "1NrW7q4jBKJ5Tw1zaB9Gm8"
+                    }
+                },
+                "publishedCounter": 12,
+                "version": 24,
+                "publishedBy": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "User",
+                        "id": "1NrW7q4jBKJ5Tw1zaB9Gm8"
+                    }
+                },
+                "publishedVersion": 23,
+                "firstPublishedAt": "2017-05-23T19:55:08.037Z",
+                "publishedAt": "2017-05-25T16:46:28.937Z"
+            },
+            "displayField": "name",
+            "name": "Event",
+            "description": "Assembly events",
+            "fields": [
+                {
+                    "id": "name",
+                    "name": "Name",
+                    "type": "Symbol",
+                    "localized": false,
+                    "required": true,
+                    "validations": [
+                        {
+                            "unique": true
+                        },
+                        {
+                            "regexp": {
+                                "pattern": "(summer|winter)\\d{4}",
+                                "flags": null
+                            },
+                            "message": "Format: summerXXXX or winterXXXX"
+                        }
+                    ],
+                    "disabled": false,
+                    "omitted": false
+                },
+                {
+                    "id": "eventTitle",
+                    "name": "Event Title",
+                    "type": "Symbol",
+                    "localized": true,
+                    "required": true,
+                    "validations": [
+                        {
+                            "size": {
+                                "max": 20
+                            }
+                        }
+                    ],
+                    "disabled": false,
+                    "omitted": false
+                },
+                {
+                    "id": "isDefault",
+                    "name": "Is Default",
+                    "type": "Boolean",
+                    "localized": false,
+                    "required": false,
+                    "validations": [],
+                    "disabled": false,
+                    "omitted": false
+                },
+                {
+                    "id": "spaceId",
+                    "name": "Space Id",
+                    "type": "Symbol",
+                    "localized": false,
+                    "required": true,
+                    "validations": [
+                        {
+                            "unique": true
+                        }
+                    ],
+                    "disabled": false,
+                    "omitted": false
+                },
+                {
+                    "id": "accessToken",
+                    "name": "accessToken",
+                    "type": "Symbol",
+                    "localized": false,
+                    "required": true,
+                    "validations": [
+                        {
+                            "size": {
+                                "max": 100
+                            }
+                        }
+                    ],
+                    "disabled": false,
+                    "omitted": false
+                },
+                {
+                    "id": "startDate",
+                    "name": "Start Date",
+                    "type": "Date",
+                    "localized": false,
+                    "required": true,
+                    "validations": [],
+                    "disabled": false,
+                    "omitted": false
+                },
+                {
+                    "id": "endDate",
+                    "name": "End Date",
+                    "type": "Date",
+                    "localized": false,
+                    "required": true,
+                    "validations": [],
+                    "disabled": false,
+                    "omitted": false
+                },
+                {
+                    "id": "logo",
+                    "name": "Logo",
+                    "type": "Link",
+                    "localized": false,
+                    "required": true,
+                    "validations": [
+                        {
+                            "linkMimetypeGroup": [
+                                "image"
+                            ],
+                            "message": "Only images are allowed!"
+                        },
+                        {
+                            "assetImageDimensions": {
+                                "width": {
+                                    "min": 800,
+                                    "max": null
+                                },
+                                "height": {
+                                    "min": 229,
+                                    "max": null
+                                }
+                            },
+                            "message": "Image too small!"
+                        }
+                    ],
+                    "disabled": false,
+                    "omitted": false,
+                    "linkType": "Asset"
+                },
+                {
+                    "id": "mainSponsors",
+                    "name": "Main Sponsors",
+                    "type": "Array",
+                    "localized": false,
+                    "required": false,
+                    "validations": [
+                        {
+                            "size": {
+                                "min": 2,
+                                "max": 4
+                            },
+                            "message": "There can only be 2-4 main sponsors!"
+                        }
+                    ],
+                    "disabled": false,
+                    "omitted": false,
+                    "items": {
+                        "type": "Link",
+                        "validations": [
+                            {
+                                "linkMimetypeGroup": [
+                                    "image"
+                                ]
+                            }
+                        ],
+                        "linkType": "Asset"
+                    }
+                },
+                {
+                    "id": "siteConfig",
+                    "name": "Site Config",
+                    "type": "Object",
+                    "localized": true,
+                    "required": true,
+                    "validations": [],
+                    "disabled": false,
+                    "omitted": false
+                }
+            ]
+        }
+    ],
+    "editorInterfaces": [
+        {
+            "controls": [
+                {
+                    "fieldId": "name",
+                    "widgetId": "singleLine"
+                },
+                {
+                    "fieldId": "eventTitle",
+                    "widgetId": "singleLine"
+                },
+                {
+                    "fieldId": "isDefault",
+                    "widgetId": "boolean",
+                    "settings": {
+                        "helpText": "This event is returned if no event is specified",
+                        "trueLabel": "Yes",
+                        "falseLabel": "No"
+                    }
+                },
+                {
+                    "fieldId": "spaceId",
+                    "widgetId": "singleLine"
+                },
+                {
+                    "fieldId": "accessToken",
+                    "widgetId": "singleLine",
+                    "settings": {
+                        "helpText": "The space's access token"
+                    }
+                },
+                {
+                    "fieldId": "startDate",
+                    "widgetId": "datePicker",
+                    "settings": {
+                        "format": "timeZ",
+                        "ampm": "24"
+                    }
+                },
+                {
+                    "fieldId": "endDate",
+                    "widgetId": "datePicker",
+                    "settings": {
+                        "format": "timeZ",
+                        "ampm": "24"
+                    }
+                },
+                {
+                    "fieldId": "logo",
+                    "widgetId": "assetLinkEditor",
+                    "settings": {
+                        "helpText": "Main logo of the event"
+                    }
+                },
+                {
+                    "fieldId": "mainSponsors",
+                    "widgetId": "assetGalleryEditor"
+                },
+                {
+                    "fieldId": "siteConfig",
+                    "widgetId": "objectEditor"
+                }
+            ],
+            "sys": {
+                "id": "default",
+                "type": "EditorInterface",
+                "version": 24,
+                "createdAt": "2017-05-23T19:55:08.216Z",
+                "createdBy": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "User",
+                        "id": "1NrW7q4jBKJ5Tw1zaB9Gm8"
+                    }
+                },
+                "space": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "Space",
+                        "id": "6dvj6yy3mmzf"
+                    }
+                },
+                "contentType": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "ContentType",
+                        "id": "event"
+                    }
+                },
+                "updatedAt": "2017-05-25T16:46:30.231Z",
+                "updatedBy": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "User",
+                        "id": "1NrW7q4jBKJ5Tw1zaB9Gm8"
+                    }
+                }
+            }
+        }
+    ],
+    "entries": [
+        {
+            "sys": {
+                "space": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "Space",
+                        "id": "6dvj6yy3mmzf"
+                    }
+                },
+                "id": "622Lh2DgwoaQoM20GceMMu",
+                "type": "Entry",
+                "createdAt": "2017-05-23T19:55:33.182Z",
+                "updatedAt": "2017-05-25T16:46:50.507Z",
+                "createdBy": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "User",
+                        "id": "1NrW7q4jBKJ5Tw1zaB9Gm8"
+                    }
+                },
+                "updatedBy": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "User",
+                        "id": "1NrW7q4jBKJ5Tw1zaB9Gm8"
+                    }
+                },
+                "publishedCounter": 7,
+                "version": 62,
+                "publishedBy": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "User",
+                        "id": "1NrW7q4jBKJ5Tw1zaB9Gm8"
+                    }
+                },
+                "publishedVersion": 61,
+                "firstPublishedAt": "2017-05-23T19:56:42.718Z",
+                "publishedAt": "2017-05-25T16:46:50.477Z",
+                "contentType": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "ContentType",
+                        "id": "event"
+                    }
+                }
+            },
+            "fields": {
+                "name": {
+                    "en-US": "summer2017"
+                },
+                "eventTitle": {
+                    "en-US": "ASSEMBLY Summer 2017"
+                },
+                "isDefault": {
+                    "en-US": true
+                },
+                "spaceId": {
+                    "en-US": "831e4vdqtkif"
+                },
+                "accessToken": {
+                    "en-US": "d37ead85a25cd9593a3278789233f51e420d73dcf845766c7179bb24fb12b5f6"
+                },
+                "startDate": {
+                    "en-US": "2017-08-03T12:00+02:00"
+                },
+                "endDate": {
+                    "en-US": "2017-08-06T18:00+02:00"
+                },
+                "logo": {
+                    "en-US": {
+                        "sys": {
+                            "type": "Link",
+                            "linkType": "Asset",
+                            "id": "6d1qY4VgZy2smggoyUkk8w"
+                        }
+                    }
+                },
+                "siteConfig": {
+                    "en-US": {
+                        "lifts": [
+                            {
+                                "link": "http://www.assembly.org/summer17/manual/",
+                                "text": "Party Manual"
+                            }
+                        ],
+                        "callToAction": {
+                            "link": "https://tickets.assembly.org/",
+                            "text": "Buy tickets!"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "assets": [
+        {
+            "sys": {
+                "space": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "Space",
+                        "id": "6dvj6yy3mmzf"
+                    }
+                },
+                "id": "6d1qY4VgZy2smggoyUkk8w",
+                "type": "Asset",
+                "createdAt": "2017-05-25T16:09:07.451Z",
+                "updatedAt": "2017-05-25T16:09:45.702Z",
+                "createdBy": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "User",
+                        "id": "1NrW7q4jBKJ5Tw1zaB9Gm8"
+                    }
+                },
+                "updatedBy": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "User",
+                        "id": "1NrW7q4jBKJ5Tw1zaB9Gm8"
+                    }
+                },
+                "publishedCounter": 1,
+                "version": 25,
+                "publishedBy": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "User",
+                        "id": "1NrW7q4jBKJ5Tw1zaB9Gm8"
+                    }
+                },
+                "publishedVersion": 24,
+                "firstPublishedAt": "2017-05-25T16:09:45.690Z",
+                "publishedAt": "2017-05-25T16:09:45.690Z"
+            },
+            "fields": {
+                "title": {
+                    "en-US": "logo"
+                },
+                "description": {
+                    "en-US": "Assembly Summer 2017 Logo"
+                },
+                "file": {
+                    "en-US": {
+                        "url": "//images.contentful.com/6dvj6yy3mmzf/6d1qY4VgZy2smggoyUkk8w/dd3c6c217023d9aaebe34202bac97207/logo.png",
+                        "details": {
+                            "size": 36418,
+                            "image": {
+                                "width": 800,
+                                "height": 229
+                            }
+                        },
+                        "fileName": "logo.png",
+                        "contentType": "image/png"
+                    }
+                }
+            }
+        }
+    ],
+    "locales": [
+        {
+            "name": "U.S. English",
+            "code": "en-US",
+            "fallbackCode": null,
+            "default": true,
+            "contentManagementApi": true,
+            "contentDeliveryApi": true,
+            "optional": false,
+            "sys": {
+                "type": "Locale",
+                "id": "0F1LRuvzVbSLeoMZxT9GMm",
+                "version": 0,
+                "space": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "Space",
+                        "id": "6dvj6yy3mmzf"
+                    }
+                },
+                "createdBy": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "User",
+                        "id": "1NrW7q4jBKJ5Tw1zaB9Gm8"
+                    }
+                },
+                "createdAt": "2017-05-23T19:51:06Z",
+                "updatedBy": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "User",
+                        "id": "1NrW7q4jBKJ5Tw1zaB9Gm8"
+                    }
+                },
+                "updatedAt": "2017-05-23T19:51:06Z"
+            }
+        }
+    ],
+    "webhooks": [],
+    "roles": [
+        {
+            "name": "Developer",
+            "description": "Allows reading Entries and managing API Keys",
+            "policies": [
+                {
+                    "effect": "allow",
+                    "actions": [
+                        "read"
+                    ],
+                    "constraint": {
+                        "and": [
+                            {
+                                "equals": [
+                                    {
+                                        "doc": "sys.type"
+                                    },
+                                    "Entry"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "effect": "allow",
+                    "actions": [
+                        "read"
+                    ],
+                    "constraint": {
+                        "and": [
+                            {
+                                "equals": [
+                                    {
+                                        "doc": "sys.type"
+                                    },
+                                    "Asset"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ],
+            "permissions": {
+                "ContentModel": [
+                    "read"
+                ],
+                "Settings": [],
+                "ContentDelivery": "all"
+            },
+            "sys": {
+                "type": "Role",
+                "id": "0F2p6yvEzfF8tyRGMNj60m",
+                "version": 0,
+                "space": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "Space",
+                        "id": "6dvj6yy3mmzf"
+                    }
+                },
+                "createdBy": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "User",
+                        "id": "1NrW7q4jBKJ5Tw1zaB9Gm8"
+                    }
+                },
+                "createdAt": "2017-05-23T19:51:06Z",
+                "updatedBy": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "User",
+                        "id": "1NrW7q4jBKJ5Tw1zaB9Gm8"
+                    }
+                },
+                "updatedAt": "2017-05-23T19:51:06Z"
+            }
+        },
+        {
+            "name": "Editor",
+            "description": "Allows editing, publishing and archiving of content",
+            "policies": [
+                {
+                    "effect": "allow",
+                    "actions": "all",
+                    "constraint": {
+                        "and": [
+                            {
+                                "equals": [
+                                    {
+                                        "doc": "sys.type"
+                                    },
+                                    "Entry"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "effect": "allow",
+                    "actions": "all",
+                    "constraint": {
+                        "and": [
+                            {
+                                "equals": [
+                                    {
+                                        "doc": "sys.type"
+                                    },
+                                    "Asset"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ],
+            "permissions": {
+                "ContentModel": [
+                    "read"
+                ],
+                "Settings": [],
+                "ContentDelivery": []
+            },
+            "sys": {
+                "type": "Role",
+                "id": "0F3luM2lorAQbHcxjYImp0",
+                "version": 0,
+                "space": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "Space",
+                        "id": "6dvj6yy3mmzf"
+                    }
+                },
+                "createdBy": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "User",
+                        "id": "1NrW7q4jBKJ5Tw1zaB9Gm8"
+                    }
+                },
+                "createdAt": "2017-05-23T19:51:07Z",
+                "updatedBy": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "User",
+                        "id": "1NrW7q4jBKJ5Tw1zaB9Gm8"
+                    }
+                },
+                "updatedAt": "2017-05-23T19:51:07Z"
+            }
+        }
+    ]
+}
